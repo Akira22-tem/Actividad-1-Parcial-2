@@ -157,7 +157,7 @@ class CalculadoraBasica extends HTMLElement {
       resultado.className = 'fs-4 fw-bold text-center py-3 text-danger';
       return;
     }
-        // Realizar cálculo
+    // Realizar cálculo
     let resultadoCalculo;
     let simbolo;
     let nombre;
@@ -213,7 +213,21 @@ class CalculadoraBasica extends HTMLElement {
           bubbles: true,
         })
       );
+    } catch (error) {
+      resultado.innerHTML = `❌ ${error.message}`;
+      resultado.className = 'fs-4 fw-bold text-center py-3 text-danger';
+
+      const registroError = {
+        primerNumero: num1,
+        segundoNumero: num2,
+        tipoOperacion: nombre || 'DESCONOCIDA',
+        mensajeError: error.message,
+        marcaTiempo: new Date().toLocaleString('es-ES'),
+      };
+
+      this.historialOperaciones.unshift(registroError);
+      this.actualizarVistaHistorial();
     }
-    
+  }
 }
 customElements.define('calculadora-basica', CalculadoraBasica);
