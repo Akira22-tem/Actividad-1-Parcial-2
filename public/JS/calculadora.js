@@ -90,6 +90,34 @@ class CalculadoraBasica extends HTMLElement {
       </div>
     `;
   }
+  configurarEventos() {
+    const botonCalcular = this.shadowRoot.getElementById('botonCalcular');
+    const botonLimpiar = this.shadowRoot.getElementById(
+      'botonLimpiarHistorial'
+    );
+
+    botonCalcular.addEventListener('click', () => this.realizarCalculo());
+    botonLimpiar.addEventListener('click', () =>
+      this.limpiarHistorialCompleto()
+    );
+
+    // Efectos de focus en los campos
+    const controles = this.shadowRoot.querySelectorAll(
+      '.form-control, .form-select'
+    );
+    controles.forEach((control) => {
+      control.addEventListener('focus', () => {
+        control.classList.remove('border-secondary');
+        control.classList.add('border-danger');
+      });
+      control.addEventListener('blur', () => {
+        if (!control.classList.contains('is-invalid')) {
+          control.classList.remove('border-danger');
+          control.classList.add('border-secondary');
+        }
+      });
+    });
+  }
 }
 
 customElements.define('calculadora-basica', CalculadoraBasica);
