@@ -157,6 +157,36 @@ class CalculadoraBasica extends HTMLElement {
       resultado.className = 'fs-4 fw-bold text-center py-3 text-danger';
       return;
     }
-  }
+        // Realizar cálculo
+    let resultadoCalculo;
+    let simbolo;
+    let nombre;
+
+    try {
+      switch (operacion) {
+        case 'suma':
+          resultadoCalculo = num1 + num2;
+          simbolo = '+';
+          nombre = 'SUMA';
+          break;
+        case 'resta':
+          resultadoCalculo = num1 - num2;
+          simbolo = '-';
+          nombre = 'RESTA';
+          break;
+        case 'multiplicacion':
+          resultadoCalculo = num1 * num2;
+          simbolo = '×';
+          nombre = 'MULTIPLICACIÓN';
+          break;
+        case 'division':
+          if (num2 === 0) throw new Error('No se puede dividir entre cero');
+          resultadoCalculo = num1 / num2;
+          simbolo = '÷';
+          nombre = 'DIVISIÓN';
+          break;
+      }
+    }
+    
 }
 customElements.define('calculadora-basica', CalculadoraBasica);
