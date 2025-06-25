@@ -17,6 +17,7 @@ class CalculadoraBasica extends HTMLElement {
           </div>
           
           <div class="card-body bg-black p-4">
+            <!-- Campos de entrada -->
             <div class="row g-3 mb-3">
               <div class="col-md-6">
                 <label class="form-label fw-bold text-white">Primer Número:</label>
@@ -39,6 +40,8 @@ class CalculadoraBasica extends HTMLElement {
                 >
               </div>
             </div>
+            
+            <!-- Operación y botón -->
             <div class="row g-3 mb-4">
               <div class="col-md-8">
                 <label class="form-label fw-bold text-white">Operación:</label>
