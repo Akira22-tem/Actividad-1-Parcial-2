@@ -118,6 +118,45 @@ class CalculadoraBasica extends HTMLElement {
       });
     });
   }
-}
+  realizarCalculo() {
+    const primerInput = this.shadowRoot.getElementById('primerNumero');
+    const segundoInput = this.shadowRoot.getElementById('segundoNumero');
+    const operacionSelect = this.shadowRoot.getElementById('tipoOperacion');
+    const resultado = this.shadowRoot.getElementById('areaResultado');
 
+    // esto limpia errores antes de iniciar es decir errores previos
+    [primerInput, segundoInput, operacionSelect].forEach((el) => {
+      el.classList.remove('is-invalid', 'border-danger');
+      el.classList.add('border-secondary');
+    });
+
+    // obtiene y valida los valores a realizar las operaciones
+    const num1 = parseFloat(primerInput.value);
+    const num2 = parseFloat(segundoInput.value);
+    const operacion = operacionSelect.value;
+
+    let error = false;
+
+    if (isNaN(num1) || primerInput.value.trim() === '') {
+      primerInput.classList.add('is-invalid', 'border-danger');
+      error = true;
+    }
+
+    if (isNaN(num2) || segundoInput.value.trim() === '') {
+      segundoInput.classList.add('is-invalid', 'border-danger');
+      error = true;
+    }
+
+    if (!operacion) {
+      operacionSelect.classList.add('is-invalid', 'border-danger');
+      error = true;
+    }
+
+    if (error) {
+      resultado.innerHTML = '❌ Completa todos los campos';
+      resultado.className = 'fs-4 fw-bold text-center py-3 text-danger';
+      return;
+    }
+  }
+}
 customElements.define('calculadora-basica', CalculadoraBasica);
