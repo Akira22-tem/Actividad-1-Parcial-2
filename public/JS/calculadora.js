@@ -75,6 +75,15 @@ class CalculadoraBasica extends HTMLElement {
                   🧹 LIMPIAR
                 </button>
               </div>
+              <div class="card-body bg-black">
+                <div style="max-height: 300px; overflow-y: auto;">
+                  <div id="listaHistorial">
+                    <div class="text-center text-secondary">
+                      📝 No hay operaciones realizadas
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
