@@ -2,6 +2,7 @@ class CalculadoraBasica extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+    this.historialOperaciones = [];
     this.renderizar();
     this.configurarEventos();
   }
@@ -10,19 +11,19 @@ class CalculadoraBasica extends HTMLElement {
       <link href="/public/LIB/css/bootstrap.min.css" rel="stylesheet">
       
       <div class="container-fluid" data-bs-theme="dark">
-        <div class="card bg-black border-danger">
-          <div class="card-header bg-danger text-white text-center">
-            <h2 class="mb-0 fw-bold">CALCULADORA</h2>
+        <div class="card bg-dark border-secondary">
+          <div class="card-header bg-secondary text-white text-center">
+            <h2 class="mb-0">CALCULADORA</h2>
           </div>
           
-          <div class="card-body bg-black p-4">
-            <!-- Campos para la entrada -->
+          <div class="card-body bg-dark p-4">
+            <!-- Campos de entrada -->
             <div class="row g-3 mb-3">
               <div class="col-md-6">
-                <label class="form-label fw-bold text-white">Primer Número:</label>
+                <label class="form-label text-white">Primer Número:</label>
                 <input 
                   type="number" 
-                  class="form-control bg-black text-white border-secondary" 
+                  class="form-control bg-dark text-white border-secondary" 
                   id="primerNumero" 
                   placeholder="0" 
                   step="any"
@@ -40,24 +41,25 @@ class CalculadoraBasica extends HTMLElement {
               </div>
             </div>
             
-            <!-- Operación y botón -->
+            <!-- Operaciónes y botón -->
             <div class="row g-3 mb-4">
               <div class="col-md-8">
-                <label class="form-label fw-bold text-white">Operación:</label>
-                <select class="form-select bg-black text-white border-secondary" id="tipoOperacion">
+                <label class="form-label text-white">Operación:</label>
+                <select class="form-select bg-dark text-white border-secondary" id="tipoOperacion">
                   <option value="">Seleccionar operación</option>
-                  <option value="suma">➕ Suma</option>
-                  <option value="resta">➖ Resta</option>
-                  <option value="multiplicacion">✖️ Multiplicación</option>
-                  <option value="division">➗ División</option>
+                  <option value="suma">Suma</option>
+                  <option value="resta">Resta</option>
+                  <option value="multiplicacion">Multiplicación</option>
+                  <option value="division">División</option>
                 </select>
               </div>
               <div class="col-md-4 d-flex align-items-end">
-                <button type="button" class="btn btn-danger w-100 fw-bold" id="botonCalcular">
+                <button type="button" class="btn btn-primary w-100" id="botonCalcular">
                   CALCULAR
                 </button>
               </div>
             </div>
+            
             <!-- seccion de los resultados -->
             <div class="mb-4">
               <div class="alert alert-dark border-danger bg-black text-white">
@@ -66,8 +68,10 @@ class CalculadoraBasica extends HTMLElement {
                   Esperando operación...
                 </div>
               </div>
-              <!-- Seccion del historial -->
-              <div class="card bg-black border-danger">
+            </div>
+            
+            <!-- Seccion del historial -->
+            <div class="card bg-black border-danger">
               <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
                 <h5 class="mb-0 fw-bold">📋 HISTORIAL</h5>
                 <button type="button" class="btn btn-outline-light btn-sm fw-bold" id="botonLimpiarHistorial">
@@ -99,8 +103,6 @@ class CalculadoraBasica extends HTMLElement {
     botonLimpiar.addEventListener('click', () =>
       this.limpiarHistorialCompleto()
     );
-
-    // Efectos de focus en los campos
     const controles = this.shadowRoot.querySelectorAll(
       '.form-control, .form-select'
     );
