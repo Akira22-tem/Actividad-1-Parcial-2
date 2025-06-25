@@ -13,11 +13,11 @@ class CalculadoraBasica extends HTMLElement {
       <div class="container-fluid" data-bs-theme="dark">
         <div class="card bg-black border-danger">
           <div class="card-header bg-danger text-white text-center">
-            <h2 class="mb-0 fw-bold">🧮 CALCULADORA</h2>
+            <h2 class="mb-0 fw-bold">CALCULADORA</h2>
           </div>
           
           <div class="card-body bg-black p-4">
-            <!-- Campos de entrada -->
+            <!-- Campos para la entrada -->
             <div class="row g-3 mb-3">
               <div class="col-md-6">
                 <label class="form-label fw-bold text-white">Primer Número:</label>
@@ -30,10 +30,10 @@ class CalculadoraBasica extends HTMLElement {
                 >
               </div>
               <div class="col-md-6">
-                <label class="form-label fw-bold text-white">Segundo Número:</label>
+                <label class="form-label text-white">Segundo Número:</label>
                 <input 
                   type="number" 
-                  class="form-control bg-black text-white border-secondary" 
+                  class="form-control bg-dark text-white border-secondary" 
                   id="segundoNumero" 
                   placeholder="0" 
                   step="any"
@@ -55,7 +55,7 @@ class CalculadoraBasica extends HTMLElement {
               </div>
               <div class="col-md-4 d-flex align-items-end">
                 <button type="button" class="btn btn-danger w-100 fw-bold" id="botonCalcular">
-                  🚀 CALCULAR
+                  CALCULAR
                 </button>
               </div>
             </div>
