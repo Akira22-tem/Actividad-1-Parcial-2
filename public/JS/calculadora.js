@@ -44,17 +44,17 @@ class CalculadoraBasica extends HTMLElement {
             <!-- Operaciónes y botón -->
             <div class="row g-3 mb-4">
               <div class="col-md-8">
-                <label class="form-label text-white">Operación:</label>
-                <select class="form-select bg-dark text-white border-secondary" id="tipoOperacion">
+                <label class="form-label fw-bold text-white">Operación:</label>
+                <select class="form-select bg-black text-white border-secondary" id="tipoOperacion">
                   <option value="">Seleccionar operación</option>
-                  <option value="suma">Suma</option>
-                  <option value="resta">Resta</option>
-                  <option value="multiplicacion">Multiplicación</option>
-                  <option value="division">División</option>
+                  <option value="suma">➕ Suma</option>
+                  <option value="resta">➖ Resta</option>
+                  <option value="multiplicacion">✖️ Multiplicación</option>
+                  <option value="division">➗ División</option>
                 </select>
               </div>
               <div class="col-md-4 d-flex align-items-end">
-                <button type="button" class="btn btn-primary w-100" id="botonCalcular">
+                <button type="button" class="btn btn-danger w-100 fw-bold" id="botonCalcular">
                   CALCULAR
                 </button>
               </div>
