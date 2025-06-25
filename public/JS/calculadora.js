@@ -5,7 +5,6 @@ class CalculadoraBasica extends HTMLElement {
     this.renderizar();
     this.configurarEventos();
   }
-
   renderizar() {
     this.shadowRoot.innerHTML = `
       <link href="/public/LIB/css/bootstrap.min.css" rel="stylesheet">
@@ -157,7 +156,7 @@ class CalculadoraBasica extends HTMLElement {
       resultado.className = 'fs-4 fw-bold text-center py-3 text-danger';
       return;
     }
-    // Realizar cálculo
+    // empieza a realizar el calculo
     let resultadoCalculo;
     let simbolo;
     let nombre;
@@ -265,6 +264,35 @@ class CalculadoraBasica extends HTMLElement {
       })
       .join('');
     historial.innerHTML = html;
+  }
+  limpiarHistorialCompleto() {
+    if (this.historialOperaciones.length === 0) return;
+
+    if (confirm('¿Eliminar todo el historial?')) {
+      this.historialOperaciones = [];
+      this.actualizarVistaHistorial();
+      this.dispatchEvent(
+        new CustomEvent('historial-limpiado', { bubbles: true })
+      );
+    }
+  }
+  //metodos que interactuan con los componentes
+  obtenerHistorialOperaciones() {
+    return [...this.historialOperaciones];
+  }
+  reiniciarCalculadora() {
+    this.shadowRoot.getElementById('primerNumero').value = '';
+    this.shadowRoot.getElementById('segundoNumero').value = '';
+    this.shadowRoot.getElementById('tipoOperacion').value = '';
+    this.shadowRoot.getElementById('areaResultado').innerHTML =
+      'Esperando operación...';
+    this.shadowRoot.getElementById('areaResultado').className =
+      'fs-4 fw-bold text-center py-3 text-secondary';
+    this.historialOperaciones = [];
+    this.actualizarVistaHistorial();
+  }
+  limpiarHistorialOperaciones() {
+    this.limpiarHistorialCompleto();
   }
 }
 customElements.define('calculadora-basica', CalculadoraBasica);
