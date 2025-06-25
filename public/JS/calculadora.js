@@ -229,5 +229,42 @@ class CalculadoraBasica extends HTMLElement {
       this.actualizarVistaHistorial();
     }
   }
+  actualizarVistaHistorial() {
+    const historial = this.shadowRoot.getElementById('listaHistorial');
+    if (this.historialOperaciones.length === 0) {
+      historial.innerHTML =
+        '<div class="text-center text-secondary">📝 No hay operaciones realizadas</div>';
+      return;
+    }
+    const html = this.historialOperaciones
+      .slice(0, 10) //muestra hasta 10 registros realizados en el componente web
+      .map((reg, i) => {
+        if (reg.mensajeError) {
+          return `
+          <div class="border border-danger rounded p-2 mb-2 bg-black">
+            <div class="d-flex justify-content-between">
+              <span class="text-danger">❌ ERROR: ${reg.primerNumero} ${reg.tipoOperacion} ${reg.segundoNumero}</span>
+              <small class="text-secondary">${reg.marcaTiempo}</small>
+            </div>
+            <small class="text-light">${reg.mensajeError}</small>
+          </div>
+        `;
+        } else {
+          return `
+          <div class="border border-success rounded p-2 mb-2 bg-black">
+            <div class="d-flex justify-content-between">
+              <span class="text-white">
+                ✅ ${reg.primerNumero} ${reg.simboloOperacion} ${reg.segundoNumero} = 
+                <span class="text-danger fw-bold">${reg.resultadoOperacion}</span>
+              </span>
+              <small class="text-secondary">${reg.marcaTiempo}</small>
+            </div>
+          </div>
+        `;
+        }
+      })
+      .join('');
+    historial.innerHTML = html;
+  }
 }
 customElements.define('calculadora-basica', CalculadoraBasica);
