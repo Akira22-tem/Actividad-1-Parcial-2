@@ -186,6 +186,33 @@ class CalculadoraBasica extends HTMLElement {
           nombre = 'DIVISIÓN';
           break;
       }
+      // esta parte ayuda a redondear si es necesario para o tener un numero excecivo de decimales
+      if (!Number.isInteger(resultadoCalculo)) {
+        resultadoCalculo = Math.round(resultadoCalculo * 1000000) / 1000000;
+      }
+      resultado.innerHTML = `${num1} ${simbolo} ${num2} = ${resultadoCalculo}`;
+      resultado.className = 'fs-4 fw-bold text-center py-3 text-white';
+
+      // esto ayuda a agregar los resultados de las operaciones al historial
+      const registro = {
+        primerNumero: num1,
+        segundoNumero: num2,
+        tipoOperacion: nombre,
+        simboloOperacion: simbolo,
+        resultadoOperacion: resultadoCalculo,
+        marcaTiempo: new Date().toLocaleString('es-ES'),
+      };
+
+      this.historialOperaciones.unshift(registro);
+      this.actualizarVistaHistorial();
+
+      // Emitir evento personalizado
+      this.dispatchEvent(
+        new CustomEvent('calculo-completado', {
+          detail: registro,
+          bubbles: true,
+        })
+      );
     }
     
 }
