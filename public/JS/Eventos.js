@@ -105,7 +105,25 @@ document.addEventListener('DOMContentLoaded', function () {
       return null;
     }
   };
-  window.obtenerHistorial = function () {};
+  window.obtenerHistorial = function () {
+    const calc = document.querySelector('calculadora-basica');
+    if (calc?.obtenerHistorialOperaciones) {
+      const historial = calc.obtenerHistorialOperaciones();
+      console.log(
+        '%c📊 Historial:',
+        'color: #17a2b8; font-weight: bold;',
+        historial
+      );
+      console.table(historial);
+      return historial;
+    } else {
+      console.log(
+        '%c❌ No se pudo obtener historial',
+        'color: #dc3545; font-weight: bold;'
+      );
+      return null;
+    }
+  };
   window.reiniciarCalculadora = function () {};
   window.limpiarHistorial = function () {};
   window.mostrarEstadisticas = function () {};
