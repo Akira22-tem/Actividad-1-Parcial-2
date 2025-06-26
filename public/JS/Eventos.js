@@ -88,7 +88,23 @@ document.addEventListener('DOMContentLoaded', function () {
     customElements.whenDefined('calculadora-basica').then(mostrarInfo);
   }
   //son funciones globales
-  window.obtenerComponente = function () {};
+  window.obtenerComponente = function () {
+    const componente = document.querySelector('calculadora-basica');
+    if (componente) {
+      console.log(
+        '%c🎯 Componente encontrado:',
+        'color: #28a745; font-weight: bold;',
+        componente
+      );
+      return componente;
+    } else {
+      console.log(
+        '%c❌ Componente no encontrado',
+        'color: #dc3545; font-weight: bold;'
+      );
+      return null;
+    }
+  };
   window.obtenerHistorial = function () {};
   window.reiniciarCalculadora = function () {};
   window.limpiarHistorial = function () {};
