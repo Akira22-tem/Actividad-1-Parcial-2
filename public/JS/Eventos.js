@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <span class="text-white fw-bold">✓</span>
         </div>
         <div class="flex-grow-1">
-          <h6 class="text-success mb-1 fw-bold">🎉 NUEVO CÁLCULO</h6>
+          <h6 class="text-success mb-1 fw-bold">Nuevo Cálculo Realizado</h6>
           <p class="mb-1 text-white">
             <strong class="text-danger">${tipoOperacion}:</strong> 
             ${primerNumero} ${simboloOperacion} ${segundoNumero} = 
@@ -171,5 +171,41 @@ document.addEventListener('DOMContentLoaded', function () {
       );
     }
   };
-  window.mostrarEstadisticas = function () {};
+  window.mostrarEstadisticas = function () {
+    const calc = document.querySelector('calculadora-basica');
+    if (calc?.obtenerHistorialOperaciones) {
+      const historial = calc.obtenerHistorialOperaciones();
+      if (historial.length === 0) {
+        console.log(
+          '%c📊 Sin operaciones para estadísticas',
+          'color: #6c757d; font-weight: bold;'
+        );
+        return;
+      }
+      const stats = {
+        total: historial.length,
+        exitosas: historial.filter((op) => !op.mensajeError).length,
+        errores: historial.filter((op) => op.mensajeError).length,
+        operaciones: {},
+      };
+      historial.forEach((op) => {
+        if (!op.mensajeError) {
+          const tipo = op.tipoOperacion;
+          stats.operaciones[tipo] = (stats.operaciones[tipo] || 0) + 1;
+        }
+      });
+      console.log(
+        '%c📈 ESTADÍSTICAS',
+        'color: #6610f2; font-weight: bold; font-size: 16px;'
+      );
+      console.table(stats);
+      return stats;
+    } else {
+      console.log(
+        '%c❌ No se pudieron obtener estadísticas',
+        'color: #dc3545; font-weight: bold;'
+      );
+      return null;
+    }
+  };
 });
