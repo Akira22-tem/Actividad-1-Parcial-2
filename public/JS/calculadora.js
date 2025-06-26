@@ -40,8 +40,6 @@ class CalculadoraBasica extends HTMLElement {
                 >
               </div>
             </div>
-            
-            <!-- Operaciónes y botón -->
             <div class="row g-3 mb-4">
               <div class="col-md-8">
                 <label class="form-label fw-bold text-white">Operación:</label>
@@ -59,7 +57,6 @@ class CalculadoraBasica extends HTMLElement {
                 </button>
               </div>
             </div>
-            
             <!-- seccion de los resultados -->
             <div class="mb-4">
               <div class="alert alert-dark border-danger bg-black text-white">
@@ -69,7 +66,6 @@ class CalculadoraBasica extends HTMLElement {
                 </div>
               </div>
             </div>
-            
             <!-- Seccion del historial -->
             <div class="card bg-black border-danger">
               <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center">
