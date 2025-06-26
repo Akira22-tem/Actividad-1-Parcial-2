@@ -59,4 +59,32 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   aplicarTemaOscuro();
+  // PAra poder mostrar la informacion por consala se realizan los siguientes consol.log
+  function mostrarInfo() {
+    console.log(
+      '%c🧮 CALCULADORA CARGADA',
+      'color: #dc3545; font-weight: bold; font-size: 16px;'
+    );
+    console.log(
+      '%c✅ Sistema funcionando',
+      'color: #28a745; font-weight: bold;'
+    );
+
+    console.group(
+      '%cFunciones disponibles:',
+      'color: #fd7e14; font-weight: bold;'
+    );
+    console.log('• obtenerComponente() - Obtener calculadora');
+    console.log('• obtenerHistorial() - Ver historial');
+    console.log('• reiniciarCalculadora() - Reiniciar todo');
+    console.log('• limpiarHistorial() - Limpiar historial');
+    console.log('• mostrarEstadisticas() - Ver estadísticas');
+    console.groupEnd();
+  }
+
+  if (customElements.get('calculadora-basica')) {
+    mostrarInfo();
+  } else {
+    customElements.whenDefined('calculadora-basica').then(mostrarInfo);
+  }
 });
