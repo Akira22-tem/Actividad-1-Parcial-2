@@ -156,6 +156,20 @@ document.addEventListener('DOMContentLoaded', function () {
       );
     }
   };
-  window.limpiarHistorial = function () {};
+  window.limpiarHistorial = function () {
+    const calc = document.querySelector('calculadora-basica');
+    if (calc?.limpiarHistorialOperaciones) {
+      calc.limpiarHistorialOperaciones();
+      console.log(
+        '%c🧹 Historial limpiado',
+        'color: #ffc107; font-weight: bold;'
+      );
+    } else {
+      console.log(
+        '%c❌ No se pudo limpiar',
+        'color: #dc3545; font-weight: bold;'
+      );
+    }
+  };
   window.mostrarEstadisticas = function () {};
 });
