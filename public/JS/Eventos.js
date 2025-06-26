@@ -124,7 +124,38 @@ document.addEventListener('DOMContentLoaded', function () {
       return null;
     }
   };
-  window.reiniciarCalculadora = function () {};
+  window.reiniciarCalculadora = function () {
+    const calc = document.querySelector('calculadora-basica');
+    if (calc?.reiniciarCalculadora) {
+      calc.reiniciarCalculadora();
+      console.log(
+        '%c🔄 Calculadora reiniciada',
+        'color: #28a745; font-weight: bold;'
+      );
+
+      const eventos = document.getElementById('eventos');
+      if (eventos) {
+        eventos.innerHTML = `
+        <div class="d-flex align-items-center">
+          <div class="bg-info rounded-circle p-2 me-3" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+            <span class="text-white fw-bold">🔄</span>
+          </div>
+          <div>
+            <h6 class="text-info mb-1 fw-bold">🚀 REINICIADA</h6>
+            <p class="mb-0 text-white">Calculadora reiniciada completamente</p>
+          </div>
+        </div>
+      `;
+        eventos.className =
+          'alert alert-dark border border-info bg-black text-white';
+      }
+    } else {
+      console.log(
+        '%c❌ No se pudo reiniciar',
+        'color: #dc3545; font-weight: bold;'
+      );
+    }
+  };
   window.limpiarHistorial = function () {};
   window.mostrarEstadisticas = function () {};
 });
