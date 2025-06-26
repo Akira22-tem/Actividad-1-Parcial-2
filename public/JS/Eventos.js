@@ -52,4 +52,11 @@ document.addEventListener('DOMContentLoaded', function () {
     contenedor.className =
       'alert alert-dark border border-warning bg-black text-white';
   });
+  // este tema es meramente estetico ya que ocnfigura un tema oscuro
+  function aplicarTemaOscuro() {
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
+    document.body.classList.add('bg-dark', 'text-white');
+  }
+
+  aplicarTemaOscuro();
 });
