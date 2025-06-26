@@ -87,4 +87,10 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     customElements.whenDefined('calculadora-basica').then(mostrarInfo);
   }
+  //son funciones globales
+  window.obtenerComponente = function () {};
+  window.obtenerHistorial = function () {};
+  window.reiniciarCalculadora = function () {};
+  window.limpiarHistorial = function () {};
+  window.mostrarEstadisticas = function () {};
 });
